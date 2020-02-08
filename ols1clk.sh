@@ -427,9 +427,9 @@ function install_wordpress
 
         cd "$WPDIRNAME"
 
-        wget --no-check-certificate https://raw.githubusercontent.com/sparisce/Gallery/master/wordpress-5.3.2.zip
-        unzip wordpress-5.3.2.zip  >/dev/null 2>&1
-        rm wordpress-5.3.2.zip
+        wget --no-check-certificate http://oss.foolish.cn/latest.tar.gz
+        tar -xzvf latest.tar.gz  >/dev/null 2>&1
+        rm latest.tar.gz
         if [ "x$WPBASENAME" != "xwordpress" ] ; then
             mv wordpress/ $WPBASENAME/
         fi
