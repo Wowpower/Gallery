@@ -576,9 +576,9 @@ END
             apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
         fi
 
-        grep -Fq  "https://mirror.tuna.tsinghua.edu.cn/mariadb/" /etc/apt/sources.list.d/mariadb_repo.list
+        grep -Fq  "http://mirror.lstn.net/mariadb/" /etc/apt/sources.list.d/mariadb_repo.list
         if [ $? != 0 ] ; then
-            echo "deb [$MARIADBCPUARCH] https://mirror.tuna.tsinghua.edu.cn/mariadb/$MARIADBVER/$OSNAME $OSVER main"  > /etc/apt/sources.list.d/mariadb_repo.list
+            echo "deb [$MARIADBCPUARCH] http://mirror.lstn.net/mariadb/$MARIADBVER/$OSNAME $OSVER main"  > /etc/apt/sources.list.d/mariadb_repo.list
         fi
         apt-get update
         apt-get -y -f --force-yes install mariadb-server
