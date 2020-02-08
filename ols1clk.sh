@@ -279,7 +279,7 @@ function install_ols_centos
 
 
     yum -y $action epel-release
-    rpm -Uvh http://litespeed-rpm.mf8.biz/centos/litespeed-repo-1.1-1.el$OSVER.noarch.rpm
+    rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el$OSVER.noarch.rpm
     yum -y $action openlitespeed
 
     #Sometimes it may fail and do a reinstall to fix
@@ -354,13 +354,13 @@ function install_ols_debian
     fi
 
 
-    grep -Fq  "http://litespeed-rpm.mf8.biz/debian/" /etc/apt/sources.list.d/lst_debian_repo.list
+    grep -Fq  "http://rpms.litespeedtech.com/debian/" /etc/apt/sources.list.d/lst_debian_repo.list
     if [ $? != 0 ] ; then
-        echo "deb http://litespeed-rpm.mf8.biz/debian/ $OSVER main"  > /etc/apt/sources.list.d/lst_debian_repo.list
+        echo "deb http://rpms.litespeedtech.com/debian/ $OSVER main"  > /etc/apt/sources.list.d/lst_debian_repo.list
     fi
 
-    wget -O /etc/apt/trusted.gpg.d/lst_debian_repo.gpg http://litespeed-rpm.mf8.biz/debian/lst_debian_repo.gpg
-    wget -O /etc/apt/trusted.gpg.d/lst_repo.gpg http://litespeed-rpm.mf8.biz/debian/lst_repo.gpg
+    wget -O /etc/apt/trusted.gpg.d/lst_debian_repo.gpg http://rpms.litespeedtech.com/debian/lst_debian_repo.gpg
+    wget -O /etc/apt/trusted.gpg.d/lst_repo.gpg http://rpms.litespeedtech.com/debian/lst_repo.gpg
 
     apt-get -y update
     apt-get -y install $action openlitespeed
@@ -427,9 +427,9 @@ function install_wordpress
 
         cd "$WPDIRNAME"
 
-        wget --no-check-certificate http://oss.foolish.cn/latest.tar.gz
-        tar -xzvf latest.tar.gz  >/dev/null 2>&1
-        rm latest.tar.gz
+        wget http://oss.foolish.cn/wordpress-5.3.2.tar.gz
+        tar -xzvf wordpress-5.3.2.tar.gz
+        rm wordpress-5.3.2.tar.gz
         if [ "x$WPBASENAME" != "xwordpress" ] ; then
             mv wordpress/ $WPBASENAME/
         fi
@@ -576,9 +576,9 @@ END
             apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
         fi
 
-        grep -Fq  "http://mirror.lstn.net/mariadb/" /etc/apt/sources.list.d/mariadb_repo.list
+        grep -Fq  "http://mirror.jaleco.com/mariadb/repo/" /etc/apt/sources.list.d/mariadb_repo.list
         if [ $? != 0 ] ; then
-            echo "deb [$MARIADBCPUARCH] http://mirror.lstn.net/mariadb/$MARIADBVER/$OSNAME $OSVER main"  > /etc/apt/sources.list.d/mariadb_repo.list
+            echo "deb [$MARIADBCPUARCH] http://mirror.jaleco.com/mariadb/repo/$MARIADBVER/$OSNAME $OSVER main"  > /etc/apt/sources.list.d/mariadb_repo.list
         fi
         apt-get update
         apt-get -y -f --force-yes install mariadb-server
